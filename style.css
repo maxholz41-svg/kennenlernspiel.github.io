@@ -1,0 +1,210 @@
+/* ===========================
+   Grundlayout & Typografie
+   =========================== */
+
+* {
+  box-sizing: border-box; /* Breite/Höhe beinhalten Padding und Border → Layout einfacher */
+  margin: 0;              /* Standard-Außenabstände entfernen */
+  padding: 0;             /* Standard-Innenabstände entfernen */
+  font-family: system-ui, sans-serif; /* Einheitliche, moderne Schriftart */
+}
+
+body {
+  min-height: 100vh; /* Body nimmt mindestens die ganze Höhe des Browserfensters ein */
+  display: flex;     /* Flexbox, um Inhalte zu zentrieren */
+  align-items: center;  /* Vertikal zentrieren */
+  justify-content: center; /* Horizontal zentrieren */
+  background: radial-gradient(circle at top, #222, #050509);
+  /* Dunkler, radialer Farbverlauf von oben nach unten */
+  color: #f9fafb; /* Standard-Schriftfarbe hell */
+}
+
+/* ===========================
+   Haupt-Container (App)
+   =========================== */
+
+.app {
+  width: 100%;                 /* Nimmt die verfügbare Breite ein */
+  max-width: 900px;            /* Aber nicht breiter als 900px */
+  padding: 24px;               /* Innenabstand zu den Rändern der Box */
+  border-radius: 32px;         /* Ecken abrunden → moderner Card-Look */
+  background: rgba(10, 10, 20, 0.96); /* Dunkler, leicht transparenter Hintergrund */
+  box-shadow: 0 18px 60px rgba(0, 0, 0, 0.55); /* Starker Schatten → 3D-Effekt */
+  border: 1px solid rgba(148, 163, 253, 0.12); /* Feiner, heller Rahmen */
+  backdrop-filter: blur(14px); /* Unschärfe hinter dem Element (Glassmorphism) */
+}
+
+h1 {
+  font-size: 2rem;      /* Große Überschrift */
+  margin-bottom: 8px;   /* Abstand nach unten */
+  font-weight: 700;     /* Fette Schrift */
+}
+
+.subtitle {
+  font-size: 0.95rem;   /* Etwas kleinere Schrift */
+  color: #9ca3af;       /* Grauer Untertitel */
+  margin-bottom: 24px;  /* Abstand vor dem nächsten Bereich */
+}
+
+/* ===========================
+   Screens (verschiedene Ansichten)
+   =========================== */
+
+.screen {
+  display: none; /* Alle Screens sind standardmäßig unsichtbar */
+}
+
+.screen.active {
+  display: block; /* Nur der Screen mit der Klasse "active" wird angezeigt */
+}
+
+/* ===========================
+   Würfel-Bereich
+   =========================== */
+
+.dice-container {
+  display: flex;             /* Flexbox für vertikale Anordnung */
+  flex-direction: column;    /* Elemente untereinander statt nebeneinander */
+  align-items: center;       /* Zentriert die Elemente horizontal */
+  gap: 18px;                 /* Abstand zwischen Würfel, Ergebnistext und Hinweis */
+  padding: 24px 0 8px;       /* Innenabstand oben/unten */
+}
+
+/* Darstellung des Würfels */
+.dice {
+  width: 110px;              /* Breite des „Würfels“ */
+  height: 110px;             /* Höhe des „Würfels“ */
+  border-radius: 26px;       /* Abgerundete Ecken → wirkt wie ein Würfel-Button */
+  background: linear-gradient(145deg, #4f46e5, #6366f1); /* Blau-lila Farbverlauf */
+  display: grid;             /* Grid-Layout, um Inhalt zu zentrieren */
+  place-items: center;       /* Zentriert Emoji oder Symbol in beide Richtungen */
+  font-size: 2.8rem;         /* Große Schrift für Emoji oder Würfelsymbol */
+  font-weight: 700;          /* Fett, damit es kräftig aussieht */
+  color: #eef2ff;            /* Helle Schriftfarbe */
+  cursor: pointer;           /* Maus wird zur Hand → sagt: „ich bin klickbar“ */
+  transition: transform 0.22s ease, box-shadow 0.22s ease;
+  /* Animierte Übergänge für Position und Schatten */
+  box-shadow: 0 18px 40px rgba(79, 70, 229, 0.45); /* Schlagschatten unter dem Würfel */
+}
+
+/* Hover-Effekt, wenn Maus über dem Würfel ist */
+.dice:hover {
+  transform: translateY(-4px) scale(1.03); /* Leicht hoch und größer → „schweben“ */
+}
+
+/* Klick-Effekt, wenn gedrückt gehalten wird */
+.dice:active {
+  transform: scale(0.97); /* Etwas kleiner → wie ein eingedrückter Button */
+}
+
+/* Text für das gewürfelte Ergebnis */
+.roll-result {
+  font-size: 1.2rem; /* Etwas größer als normaler Text */
+  color: #a5b4fc;    /* Heller Lilaton */
+  margin-top: 8px;   /* Kleiner Abstand über dem Text */
+}
+
+/* ===========================
+   Kategorien-Bereich
+   =========================== */
+
+.categories {
+  display: grid; /* Grid-Layout für mehrere Karten */
+  grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+  /* So viele Spalten wie Platz ist, jede mindestens 170px breit */
+  gap: 14px; /* Abstand zwischen den Karten */
+  margin: 6px 0 14px; /* Leichte Abstände oben und unten */
+}
+
+/* Darstellung einer Kategorie-Karte */
+.category-card {
+  padding: 14px;                 /* Innenabstand */
+  border-radius: 18px;           /* Abgerundete Ecken */
+  cursor: pointer;               /* Zeigt: Karte ist klickbar */
+  background: rgba(255, 255, 255, 0.05); /* leicht heller Hintergrund */
+  transition: 0.18s;             /* Sanfte Animation bei Hover-Effekt */
+}
+
+/* Hover-Effekt bei Kategorie-Karten */
+.category-card:hover {
+  transform: translateY(-3px);         /* Karte bewegt sich leicht nach oben */
+  box-shadow: 0 10px 26px rgba(0, 0, 0, 0.45); /* Schatten, wirkt wie „aufgehoben“ */
+}
+
+/* Farblich unterschiedliche Hintergründe für die Kategorien,
+   damit man die Kategorien leichter unterscheiden kann */
+
+/* Farben für die neuen Kategorien */
+
+.cat-memes {
+  background: rgba(96, 165, 250, 0.12);   /* Blau → Internet / Social Media */
+}
+
+.cat-pranks {
+  background: rgba(248, 113, 113, 0.12);  /* Rot → Chaos & Humor */
+}
+
+.cat-superpowers {
+  background: rgba(52, 211, 153, 0.12);   /* Grün → Fantasie & Magie */
+}
+
+.cat-celebs {
+  background: rgba(251, 191, 36, 0.13);   /* Gold → Stars & Promis */
+}
+
+.cat-either {
+  background: rgba(129, 140, 248, 0.16);  /* Lila → Entscheidungen */
+}
+
+
+/* ===========================
+   Frage-Box
+   =========================== */
+
+.question-box {
+  margin-top: 8px;                         /* Abstand nach oben */
+  padding: 14px;                           /* Innenabstand */
+  border-radius: 18px;                     /* Abgerundete Ecken */
+  background: rgba(79, 70, 229, 0.12);     /* Leicht lilafarbener Hintergrund */
+  border: 1px solid rgba(148, 163, 253, 0.18); /* Feiner Rahmen */
+  display: none;                           /* Unsichtbar, bis eine Kategorie gewählt wurde */
+  flex-direction: column;                  /* Inhalt untereinander anordnen */
+  gap: 8px;                                /* Abstand zwischen Kategorie-Label, Frage, Button */
+}
+
+/* Wenn die Box aktiv ist (Klasse "active" hinzugefügt), wird sie sichtbar */
+.question-box.active {
+  display: flex;
+}
+
+/* Kategorie-Bezeichner über der Frage */
+.question-label {
+  font-size: 0.8rem;        /* Etwas kleiner als normaler Text */
+  color: #818cf8;           /* Hell-lila */
+  text-transform: uppercase;/* Alles in Großbuchstaben, sieht wie ein Label aus */
+}
+
+/* Der eigentliche Fragetext */
+.question-text {
+  font-size: 1rem;
+}
+
+/* ===========================
+   Button „Weiter würfeln“
+   =========================== */
+
+.btn {
+  padding: 8px 16px; /* Innenabstand → macht den Button größer und einfacher zu klicken */
+  border-radius: 999px; /* Sehr große Rundung → „Pillenform“ */
+  background: linear-gradient(135deg, #4f46e5, #6366f1); /* Farbverlauf wie beim Würfel */
+  color: white;       /* Weiße Schrift */
+  cursor: pointer;    /* Hand-Cursor */
+  border: none;       /* Kein sichtbarer Rahmen */
+  transition: 0.2s;   /* Sanfte Animation beim Hover */
+  width: fit-content; /* Button wird nur so breit wie der Inhalt + Padding */
+}
+
+/* Hover-Effekt für den Button */
+.btn:hover {
+  transform: translateY(-2px); /* Button bewegt sich leicht nach oben */
+}

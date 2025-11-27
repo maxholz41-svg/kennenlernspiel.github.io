@@ -1,0 +1,103 @@
+<!DOCTYPE html> <!-- Sagt dem Browser: Dies ist ein HTML5-Dokument -->
+<html lang="de"> <!-- Sprache der Seite ist Deutsch (z.B. für Screenreader & Suchmaschinen) -->
+<head> <!-- Kopfbereich: hier kommen Meta-Daten, Titel, Verknüpfungen zu CSS etc. rein -->
+  <meta charset="UTF-8"> <!-- Zeichensatz: UTF-8 ermöglicht Umlaute, Emojis usw. -->
+  <title>Kennenlern-Spiel</title> <!-- Titel, der im Browser-Tab angezeigt wird -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- Sorgt dafür, dass die Seite auf Handys korrekt skaliert wird -->
+
+  <link rel="stylesheet" href="style.css">
+  <!-- Verknüpft die HTML-Datei mit der CSS-Datei "style.css", in der das Design steht -->
+</head>
+
+<body> <!-- Hier beginnt der sichtbare Teil der Webseite -->
+
+  <div class="app">
+    <!-- Hauptcontainer der ganzen App. In CSS bekommt .app ein Kartendesign. -->
+
+    <h1>Kennenlern-Spiel</h1> <!-- Überschrift, erklärt kurz das Projekt -->
+    <p class="subtitle">
+      Würfle, laufe auf deinem Brett und beantworte eine Frage zur passenden Kategorie.
+      <!-- Untertitel, der beschreibt, wie das Spiel funktioniert -->
+    </p>
+
+    <!-- SCREEN 1: Startansicht mit Würfel -->
+    <div id="start-screen" class="screen active">
+      <!-- "screen" = allgemeine Screen-Klasse, "active" = dieser Screen ist sichtbar -->
+      <div class="dice-container">
+        <!-- Container für den Würfel und Text, wird in CSS zentriert -->
+
+        <div id="dice" class="dice">🎲</div>
+        <!-- Das sichtbare Würfel-Element. Es zeigt zuerst ein Würfel-Emoji.
+             Mit JavaScript ändern wir später den Inhalt und animieren den Würfel. -->
+
+        <div id="roll-result" class="roll-result"></div>
+        <!-- In dieses <div> schreiben wir nach dem Würfeln z.B.:
+             "Du hast eine 4 gewürfelt! 🎉" -->
+
+        <p>Klicke auf den Würfel!</p>
+        <!-- Hinweis für die Spieler*innen, was sie tun sollen -->
+      </div>
+    </div>
+
+    <!-- SCREEN 2: Kategorien und Frageanzeige -->
+    <div id="category-screen" class="screen">
+      <!-- Dieser Screen ist zunächst unsichtbar (hat keine "active"-Klasse),
+           wird erst nach dem Würfeln eingeblendet. -->
+
+      <p>Wähle die Kategorie deines Feldes:</p>
+      <!-- Spieler*innen sollen hier die passende Kategorie zur Feldfarbe auf dem Brett wählen -->
+
+      <div class="categories">
+        <!--
+          Jede Kategorie-Karte besteht aus:
+          1. class="category-card" → sagt: das ist eine klickbare Kategorie
+          2. einer Farb-Klasse (z.B. cat-memes)
+          3. data-category="memes" → DAS ist der Schlüssel,
+             mit dem JavaScript weiß, welche Fragen benutzt werden müssen
+        -->
+      
+        <div class="category-card cat-memes" data-category="memes">
+          Memes &amp; Trends
+          <!-- &amp; steht für das Zeichen "&" in HTML -->
+        </div>
+      
+        <div class="category-card cat-pranks" data-category="pranks">
+          Pranks &amp; lustige Geschichten
+        </div>
+      
+        <div class="category-card cat-superpowers" data-category="superpowers">
+          Superkräfte &amp; Fantasie
+        </div>
+      
+        <div class="category-card cat-celebs" data-category="celebs">
+          Berühmtheiten &amp; Influencer
+        </div>
+      
+        <div class="category-card cat-either" data-category="either">
+          Würdest du eher…?
+        </div>
+      </div>
+      
+
+      <!-- Box, in der die zufällige Frage angezeigt wird -->
+      <div id="question-box" class="question-box">
+        <!-- Diese Box ist am Anfang versteckt und wird beim Klick auf eine Kategorie sichtbar -->
+
+        <div class="question-label" id="question-category-label"></div>
+        <!-- Hier zeigen wir die Kategorie an, z.B. "Freizeit & Interessen" -->
+
+        <div class="question-text" id="question-text"></div>
+        <!-- Hier zeigen wir die zufällig ausgewählte Frage an -->
+
+        <button class="btn" id="btn-roll-again">🎲 Weiter würfeln</button>
+        <!-- Button, der den Frage-Screen schließt und wieder zum Würfel-Screen zurückgeht -->
+      </div>
+    </div>
+
+  </div> <!-- Ende .app -->
+
+  <!-- Verbindung zur JavaScript-Datei: hier steckt die Logik des Spiels -->
+  <script src="script.js"></script>
+</body>
+</html>
